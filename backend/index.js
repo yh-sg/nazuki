@@ -14,6 +14,7 @@ app.use(express.json()); //allows me to receive JSON files from HEADER of REQUES
 
 //setup my routes
 app.use("/profiles", require("./routes/profile.route"));
+app.use("/appdate", require("./routes/appDate.route"));
 
 app.listen(PORT, (e)=>{
     if(e) console.log("Error in server setup");

@@ -45,7 +45,7 @@ router.put("/update/:id", async (req, res) => {
         profile.password = req.body.name.toLowerCase().split("").reverse().join("");
     
         if(profile){
-            res.status(200).json({
+            res.status(204).json({
                 message: "profile updated",
                 profile
             })
@@ -62,7 +62,7 @@ router.delete("/delete/:id", async (req,res)=>{
     try {
         let profileDelete = await Profile.findByIdAndDelete(req.params.id);
         if (profileDelete) {
-          res.status(200).json({
+          res.status(204).json({
             message: "deleted profile",
             profileDelete
           });
