@@ -4,26 +4,28 @@ import Header from './components/Header'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import {Container} from 'react-bootstrap'
-import AdminProfile from './components/AdminProfile'
+import UserPage from './components/UserPage'
 import {Switch,BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 
 function App() {
 
-  const [isProfile, setIsProfile] = useState(false)
+  const [isProfile, setIsProfile] = useState(false),
+    [name, setName] = useState('');
 
   const loginHandler = (name) => {
     if(name==="andy"){
       setIsProfile(true);
-      // localStorage.setItem("token", "loggeeddddd");
+      localStorage.setItem("token", "loggeeddddd");
     }
   }
 
-  // useEffect(()=>{
-  //   let isProfile = localStorage.getItem('token')
-  //   if(token!=='undefined'){
-  //     props.history.push('/')
-  //   }
-  // },[])
+  useEffect(()=>{
+    let isProfile = localStorage.getItem('token')
+    if(isProfile==='loggeeddddd'){
+      setIsProfile(true);
+      setName("andy")
+    }
+  },[])
 
   return (
     <>
@@ -46,13 +48,13 @@ function App() {
               path="/home"
               exact
               render={()=>
-                isProfile ? <AdminProfile/> : <Redirect to="/"/>}
+                isProfile ? <UserPage name={name}/> : <Redirect to="/"/>}
             />
         
         {/* Handle All other undefined path */}
           <Route path='*' exact component={NotFound}/>
           </Switch>
-          
+
         </Container>
       </Router>
     </>
