@@ -1,5 +1,6 @@
 import React from 'react'
-import {Form, Button, ProgressBar, Col} from 'react-bootstrap'
+import {Form, Button, ProgressBar, Col, Image} from 'react-bootstrap'
+
 
 export default function UserPage(props) {
 
@@ -9,12 +10,15 @@ export default function UserPage(props) {
 
     return (
         <div>
-            <Form.Group className="mt-3">
+            <div class="d-flex flex-row-reverse">
+                <Image src='/assets/images/ペコリーヌ(プリンセス).png' className="mt-2" roundedCircle />
+            </div>
+            <Form.Group className="mt-n4 fixed-name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control disabled value={props.name} />
             </Form.Group>
 
-            <Form className="form-border mt-3">
+            <Form className="form-border mt-3 p-4">
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Meet Options:</Form.Label>
                     <Form.Control as="select">
@@ -42,7 +46,7 @@ export default function UserPage(props) {
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridZip">
-                    <Form.Label>Re-type Password</Form.Label>
+                    <Form.Label>Re-type</Form.Label>
                     <Form.Control />
                     </Form.Group>
                 </Form.Row>
@@ -51,7 +55,7 @@ export default function UserPage(props) {
                     Submit
                 </Button>
             </Form>
-            <section className="form-border2 mt-3">
+            <section className="form-border2 mt-3 p-4">
                 <div>
                     <ProgressBar striped variant="success" now={80} />
                     <ProgressBar striped variant="info" now={60} />
