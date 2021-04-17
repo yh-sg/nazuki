@@ -1,33 +1,34 @@
 import './App.css';
-import {Form, Button} from 'react-bootstrap'
 import Header from './components/Header'
+import Home from './components/Home'
+import AdminProfile from './components/AdminProfile'
+import {Switch,BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 
 function App() {
   return (
     <>
+    <Router>
       <Header />
-      <div className="container">
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+        <div className="container">
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-      </div>
+          <Switch>
+            <Route 
+              path="/"
+              exact
+              component={Home}
+            />
+          </Switch>
+        
+          <Switch>
+            <Route 
+              path="/home"
+              exact
+              component={AdminProfile}
+            />
+          </Switch>
+       
+        </div>
+      </Router>
     </>
   );
 }
