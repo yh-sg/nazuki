@@ -10,9 +10,10 @@ const express = require("express"),
 require("./configuration/database.js");
 app.use(morgan("combined"));
 app.use(cors());
+app.use(express.json()); //allows me to receive JSON files from HEADER of REQUEST
 
 //setup my routes
-app.use("/profiles", require("./routes/profiles"));
+app.use("/profiles", require("./routes/profile.route"));
 
 app.listen(PORT, (e)=>{
     if(e) console.log("Error in server setup");

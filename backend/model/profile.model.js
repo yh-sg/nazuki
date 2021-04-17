@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
+    moment = require("moment");
 
 const profileSchema = new mongoose.Schema({
     name: {
@@ -10,22 +11,20 @@ const profileSchema = new mongoose.Schema({
         type: String,
     },
     created_at:{
-        type: Date,
-        default: Date.now,
+        type: String,
+        default: () => moment().format('dddd, MMMM Do YYYY, h:mm:ss A'),
     },
     updated_at:{
-        type: Date,
-        default: Date.now,
+        type: String,
+        default: () => moment().format('dddd, MMMM Do YYYY, h:mm:ss A'),
     },
     password:{
         type: String,
-        required: true,
     },
     role:{
         type: String,
         enum: ["Nakama", "Admin"],
-        default: "Nakama",
-        require: true
+        default: "Nakama"
     }
 });
 
