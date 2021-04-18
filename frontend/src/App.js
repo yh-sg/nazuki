@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import {Container} from 'react-bootstrap'
-import UserPage from './components/UserPage'
+import UserPage from './components/User/UserPage'
 import {Switch,BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 
 function App() {
