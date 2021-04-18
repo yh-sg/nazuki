@@ -4,8 +4,12 @@ import Header from './components/Header'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import {Container} from 'react-bootstrap'
+<<<<<<< HEAD
 import UserPage from './components/UserPage'
 import Axios from 'axios'
+=======
+import UserPage from './components/User/UserPage'
+>>>>>>> frontEndDesign
 import {Switch,BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 
 function App() {
@@ -14,6 +18,7 @@ function App() {
     [name, setName] = useState('');
 
   const loginHandler = (name) => {
+<<<<<<< HEAD
     Axios.post(`http://localhost:3001/profiles/name`, name)
       .then((res)=>{
         console.log(res);
@@ -33,6 +38,21 @@ function App() {
   //     setIsProfile(true);
   //   }
   // },[])
+=======
+    if(name==="andy"){
+      setIsProfile(true);
+      sessionStorage.setItem("token", "loggeeddddd");
+    }
+  }
+
+  useEffect(()=>{
+    let isProfile = sessionStorage.getItem('token')
+    if(isProfile==='loggeeddddd'){
+      setIsProfile(true);
+      setName("andy")
+    }
+  },[])
+>>>>>>> frontEndDesign
 
   return (
     <>
