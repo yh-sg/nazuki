@@ -1,7 +1,8 @@
 //dependencies
 const router = require("express").Router(),
     Profile = require("../model/profile.model"),
-    moment = require("moment");
+    moment = require("moment"),
+    bcrypt = require("bcrypt");
 
 //@route profiles
 router.get("/", async(req,res)=>{
@@ -19,11 +20,14 @@ router.get("/", async(req,res)=>{
     }
 })
 
+//add profile
 router.post("/add", async(req,res)=>{
     try {
         let profile = new Profile(req.body);
         profile.name = req.body.name.toLowerCase();
-        profile.password = req.body.name.toLowerCase().split("").reverse().join("");
+        let password = req.body.name.toLowerCase().split("").reverse().join(""),
+            hashPassWord = await bcrypt.hash(password, 10)
+        profile.password = hashPassWord
         await profile.save();
         res.status(201).json({
             message: "profile created!",
@@ -73,6 +77,24 @@ router.delete("/delete/:id", async (req,res)=>{
           message: "failed to delete profile",
         });
       }
+})
+
+//login one user using name
+router.post("/name", async(req,res)=>{
+    let {name} = req.body
+    try{
+        let profile = await Profile.findOne({name})
+
+        if(!profile){
+            return res.status(400).json({ message: "User not found!" });
+        }
+
+        res.status(200).json({ message: "User found!", profile  });
+
+    }catch(e){
+        console.log(e);
+        res.status(500).json({ message: "login,err" });
+    }
 })
 
 module.exports = router;

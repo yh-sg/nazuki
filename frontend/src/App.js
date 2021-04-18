@@ -5,6 +5,7 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import {Container} from 'react-bootstrap'
 import UserPage from './components/UserPage'
+import Axios from 'axios'
 import {Switch,BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 
 function App() {
@@ -13,19 +14,25 @@ function App() {
     [name, setName] = useState('');
 
   const loginHandler = (name) => {
-    if(name==="andy"){
-      setIsProfile(true);
-      localStorage.setItem("token", "loggeeddddd");
-    }
+    Axios.post(`http://localhost:3001/profiles/name`, name)
+      .then((res)=>{
+        console.log(res);
+        localStorage.setItem("token", "loggeeddddd");
+        setIsProfile(true);
+        setName(res.data.profile.name)
+      }).catch((e)=>{
+        console.log(name)
+        setIsProfile(false);
+        console.log(e);
+      })
   }
 
-  useEffect(()=>{
-    let isProfile = localStorage.getItem('token')
-    if(isProfile==='loggeeddddd'){
-      setIsProfile(true);
-      setName("andy")
-    }
-  },[])
+  // useEffect(()=>{
+  //   let isProfile = localStorage.getItem('token')
+  //   if(isProfile==='loggeeddddd'){
+  //     setIsProfile(true);
+  //   }
+  // },[])
 
   return (
     <>
