@@ -34,5 +34,33 @@ router.post("/add", async(req,res)=>{
     }
 })
 
+// router.update("/update/:id", async (req,res)=>{
+//   try {
+
+//     } catch (e) {
+//       console.log(e)
+//       res.status(500).json({
+//         message: "",
+//       });
+//     }
+// })
+
+router.delete("/delete/:id", async (req,res)=>{
+  try {
+      let dateDelete = await AppDate.findByIdAndDelete(req.params.id);
+      if (dateDelete) {
+        res.status(204).json({
+          message: "deleted date",
+          dateDelete
+        });
+      }
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        message: "failed to delete date",
+      });
+    }
+})
+
 
 module.exports = router;
