@@ -15,12 +15,12 @@ function App() {
   const loginHandler = (name) => {
     if(name==="andy"){
       setIsProfile(true);
-      localStorage.setItem("token", "loggeeddddd");
+      sessionStorage.setItem("token", "loggeeddddd");
     }
   }
 
   useEffect(()=>{
-    let isProfile = localStorage.getItem('token')
+    let isProfile = sessionStorage.getItem('token')
     if(isProfile==='loggeeddddd'){
       setIsProfile(true);
       setName("andy")

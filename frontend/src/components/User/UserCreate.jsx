@@ -39,7 +39,7 @@ export default function UserCreate() {
             <Form className="form-border mt-3 p-4">
                 <h1>Creating</h1>
 
-                <Form.Group as={Col} controlId="formGridState">
+                <Form.Group>
                     <Form.Label>Occasion?</Form.Label>
                     <Form.Control as="select" defaultValue="Mahjong">
                         <option>Mahjong</option>
@@ -51,6 +51,18 @@ export default function UserCreate() {
                         <option>Others</option>
                     </Form.Control>
                 </Form.Group>
+
+                <Form.Row>
+                    <Form.Group as={Col}>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control />
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                    <Form.Label>Re-type</Form.Label>
+                    <Form.Control />
+                    </Form.Group>
+                </Form.Row>
 
                 <DatePicker 
                     selected={startDate} 
